@@ -1,6 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
 import {
   getCS_AuthCookieName,
+  getCS_AuthCookieSecure,
   getCS_JwtExpiresIn,
   getCS_JwtSecret,
 } from "@/lib/auth/cs_auth_config";
@@ -36,7 +37,7 @@ export function cs_authCookieOptions() {
     name: getCS_AuthCookieName(),
     httpOnly: true,
     sameSite: "lax" as const,
-    secure: process.env.NODE_ENV === "production",
+    secure: getCS_AuthCookieSecure(),
     path: "/",
   };
 }

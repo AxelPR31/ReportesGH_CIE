@@ -17,3 +17,11 @@ export function getCS_JwtExpiresIn(): string {
 export function isCS_AuthConfigured(): boolean {
   return Boolean(process.env.CS_JWT_SECRET);
 }
+
+/** false en HTTP interno (sin HTTPS); true por defecto en production. */
+export function getCS_AuthCookieSecure(): boolean {
+  const raw = process.env.CS_AUTH_COOKIE_SECURE;
+  if (raw === "true") return true;
+  if (raw === "false") return false;
+  return process.env.NODE_ENV === "production";
+}
