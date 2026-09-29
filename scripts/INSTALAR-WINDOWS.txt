@@ -1,0 +1,26 @@
+Reportes CIE — instalación en Windows Server
+============================================
+
+IMPORTANTE: El login (POST /api/auth) devuelve 500 si no hay node_modules
+instalados EN ESTE SERVIDOR o si Node es muy viejo.
+
+1) Node.js 20.19+ o 22 LTS — https://nodejs.org
+   CMD nueva:  node -v
+
+2) Instalar dependencias (doble clic o CMD):
+   cd /d "C:\Reportes GH\produccion_cie"
+   instalar-deps.cmd
+
+   (Equivalente manual: rmdir /s /q node_modules  &&  npm ci --omit=dev)
+
+3) Configuración
+   copy .env.example .env
+   notepad .env
+   CS_SQL_PASSWORD = contraseña SQL en texto plano
+   CS_JWT_SECRET = cadena larga aleatoria
+
+4) Arrancar
+   node server.js
+   http://localhost:3000/login
+
+Si instalar-deps.cmd falla en "mssql", actualice Node y vuelva a ejecutarlo.
